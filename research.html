@@ -125,111 +125,111 @@
     }
 
     /* Simple slideshow styling */
-.research-gallery {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* center the slideshow card */
-}
+    .research-gallery {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;   /* center the slideshow card */
+    }
 
-.research-gallery h2 {
-  font-size: 1.3rem;
-  margin-bottom: 0.75rem;
-}
+    .research-gallery h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
 
-/* Card that holds the image + arrows + dots */
-.slideshow {
-  position: relative;
-  display: inline-block;
-  margin: 0 auto;
+    /* Card that holds the image + arrows + dots */
+    .slideshow {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto;
 
-  width: 100%;
-  max-width: 1100px;      /* overall card width on large screens */
-  border-radius: 16px;
-  background: var(--bg-elevated, #f4f4f4);
-  overflow: hidden;       /* keep rounded corners on images */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
+      width: 100%;
+      max-width: 1100px;      /* overall card width on large screens */
+      border-radius: 16px;
+      background: var(--bg-elevated, #f4f4f4);
+      overflow: hidden;       /* keep rounded corners on images */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
 
-.slides {
-  position: relative;
-}
+    .slides {
+      position: relative;
+    }
 
-.slide {
-  display: none;
-}
+    .slide {
+      display: none;
+    }
 
-.slide.active {
-  display: block;
-}
+    .slide.active {
+      display: block;
+    }
 
-.slide img {
-  display: block;
-  width: 100%;       /* image fills card width */
-  height: auto;      /* keep aspect ratio */
-  margin: 0 auto;
-}
+    .slide img {
+      display: block;
+      width: 100%;       /* image fills card width */
+      height: auto;      /* keep aspect ratio */
+      margin: 0 auto;
+    }
 
-.slide figcaption {
-  padding: 0.5rem 0.9rem 0.8rem;
-  font-size: 0.85rem;
-  color: var(--text-muted, #555);
-}
+    .slide figcaption {
+      padding: 0.5rem 0.9rem 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-muted, #555);
+    }
 
-/* Navigation arrows */
-.slide-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: rgba(0, 0, 0, 0.35);
-  color: #fff;
-  font-size: 1.4rem;
-  width: 2.3rem;
-  height: 2.3rem;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 2;
-}
+    /* Navigation arrows */
+    .slide-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: rgba(0, 0, 0, 0.35);
+      color: #fff;
+      font-size: 1.4rem;
+      width: 2.3rem;
+      height: 2.3rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+    }
 
-.slide-nav:hover {
-  background: rgba(0, 0, 0, 0.5);
-}
+    .slide-nav:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
 
-.slide-nav.prev {
-  left: 0.75rem;
-}
+    .slide-nav.prev {
+      left: 0.75rem;
+    }
 
-.slide-nav.next {
-  right: 0.75rem;
-}
+    .slide-nav.next {
+      right: 0.75rem;
+    }
 
-/* Dots */
-.slide-dots {
-  position: absolute;
-  bottom: 0.45rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.35rem;
-}
+    /* Dots */
+    .slide-dots {
+      position: absolute;
+      bottom: 0.45rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.35rem;
+    }
 
-.slide-dots .dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  border: none;
-  background: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-}
+    .slide-dots .dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+    }
 
-.slide-dots .dot.active {
-  background: rgba(255, 255, 255, 0.95);
-}
-
+    .slide-dots .dot.active {
+      background: rgba(255, 255, 255, 0.95);
+    }
+  </style>
 </head>
 
 <body class="page-research">
