@@ -138,11 +138,21 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
+
+  /* allow container to expand to the natural image size */
+  display: inline-block;
+  text-align: center;
+
   border-radius: 16px;
-  overflow: visible; /* let the full image show */
   background: var(--bg-elevated, #f4f4f4);
+
+  /* remove hard clipping */
+  overflow: visible;
+
+  /* smooth shadow that adapts to the container shape */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
+
 
 .slides {
   position: relative;
@@ -161,8 +171,9 @@
 
 .slide img {
   display: block;
-  max-width: 100%;  /* scale down if too wide */
-  height: auto;      /* keep aspect ratio */
+  width: auto;          /* use natural width */
+  max-width: 100%;      /* scale down if too wide */
+  height: auto;
   margin: 0 auto;
 }
 
