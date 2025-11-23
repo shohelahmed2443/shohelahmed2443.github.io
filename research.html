@@ -123,6 +123,104 @@
         order: 3;
       }
     }
+
+    /* Simple slideshow styling */
+    .research-gallery {
+      margin-top: 3rem;
+    }
+
+    .research-gallery h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .slideshow {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--bg-elevated, #f4f4f4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .slides {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .slide figcaption {
+      padding: 0.5rem 0.9rem 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-muted, #555);
+    }
+
+    .slide-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: rgba(0, 0, 0, 0.35);
+      color: #fff;
+      font-size: 1.4rem;
+      width: 2.3rem;
+      height: 2.3rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .slide-nav:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .slide-nav.prev {
+      left: 0.75rem;
+    }
+
+    .slide-nav.next {
+      right: 0.75rem;
+    }
+
+    .slide-dots {
+      position: absolute;
+      bottom: 0.45rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .slide-dots .dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+    }
+
+    .slide-dots .dot.active {
+      background: rgba(255, 255, 255, 0.95);
+    }
   </style>
 </head>
 
@@ -280,6 +378,36 @@
       </article>
 
     </section>
+
+    <!-- RESEARCH IMAGE SLIDESHOW -->
+    <section class="research-gallery">
+      <h2>Research snapshots</h2>
+      <div class="slideshow" aria-label="Research image slideshow">
+        <div class="slides">
+          <figure class="slide active">
+            <img src="assets/images/research1.jpg" alt="Phase portrait and bifurcation structure of a consumer resource model">
+            <figcaption>Phase portrait and bifurcation structure for behaviourally structured consumer resource dynamics.</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="assets/images/research2.jpg" alt="Stoichiometric producer grazer simulation">
+            <figcaption>Stoichiometric producer grazer simulations illustrating nutrient driven regime shifts.</figcaption>
+          </figure>
+          <figure class="slide">
+            <img src="assets/images/research3.jpg" alt="Infectious disease model fit to data">
+            <figcaption>Infectious disease model output aligned with surveillance data for an outbreak.</figcaption>
+          </figure>
+        </div>
+
+        <button class="slide-nav prev" type="button" aria-label="Previous slide">‹</button>
+        <button class="slide-nav next" type="button" aria-label="Next slide">›</button>
+
+        <div class="slide-dots" aria-hidden="true">
+          <button class="dot active" type="button"></button>
+          <button class="dot" type="button"></button>
+          <button class="dot" type="button"></button>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -291,7 +419,7 @@
 
   <script src="assets/script.js"></script>
 
-  <!-- Research page specific behaviour: filter + collapsible -->
+  <!-- Research page specific behaviour: filter + collapsible + slideshow -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const searchInput = document.getElementById("searchProjects");
@@ -342,10 +470,77 @@
           body.hidden = expanded;
           article.classList.toggle("open", !expanded);
           if (icon) {
-            icon.textContent = expanded ? "›" : "›"; // keep same glyph, rotation via CSS
+            icon.textContent = expanded ? "›" : "›"; // rotation via CSS
           }
         });
       });
+
+      // Simple slideshow logic
+      const slideshow = document.querySelector(".slideshow");
+      if (slideshow) {
+        const slides = Array.from(slideshow.querySelectorAll(".slide"));
+        const prevBtn = slideshow.querySelector(".slide-nav.prev");
+        const nextBtn = slideshow.querySelector(".slide-nav.next");
+        const dots = Array.from(slideshow.querySelectorAll(".dot"));
+        let index = 0;
+        let timerId = null;
+
+        function showSlide(i) {
+          index = (i + slides.length) % slides.length;
+          slides.forEach((slide, k) => {
+            slide.classList.toggle("active", k === index);
+          });
+          dots.forEach((dot, k) => {
+            dot.classList.toggle("active", k === index);
+          });
+        }
+
+        function nextSlide() {
+          showSlide(index + 1);
+        }
+
+        function prevSlide() {
+          showSlide(index - 1);
+        }
+
+        function startAuto() {
+          stopAuto();
+          timerId = setInterval(nextSlide, 6000);
+        }
+
+        function stopAuto() {
+          if (timerId) {
+            clearInterval(timerId);
+            timerId = null;
+          }
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            nextSlide();
+            startAuto();
+          });
+        }
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => {
+            prevSlide();
+            startAuto();
+          });
+        }
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener("click", () => {
+            showSlide(i);
+            startAuto();
+          });
+        });
+
+        slideshow.addEventListener("mouseenter", stopAuto);
+        slideshow.addEventListener("mouseleave", startAuto);
+
+        showSlide(0);
+        startAuto();
+      }
 
       applyFilters();
     });
