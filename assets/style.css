@@ -1,0 +1,235 @@
+/* ===== Dynamic & Stylish Academic Theme ===== */
+:root{
+  --accent: #0b5cab;
+  --accent-2:#7a5bff;
+  --text:#1f2328;
+  --muted:#5c6773;
+  --bg:#ffffff;
+  --surface:#ffffff;
+  --border:#e4e7eb;
+  --shadow:0 12px 28px rgba(0,0,0,.08);
+}
+:root.theme-dark{
+  --accent:#5aa0ff;
+  --accent-2:#9b7bff;
+  --text:#e7edf5;
+  --muted:#b7c2cf;
+  --bg:#0d1117;
+  --surface:#0f141b;
+  --border:#202937;
+  --shadow:0 18px 36px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.7; scroll-behavior:smooth;
+}
+.container{width:min(1100px,92%); margin-inline:auto}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;background:#000;color:#fff;padding:.5rem;border-radius:6px}
+
+.site-header{border-bottom:1px solid var(--border); background:var(--surface); position:sticky; top:0; z-index:60; backdrop-filter:saturate(110%) blur(6px)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0;transition:padding .25s ease}
+.site-header.shrink .header-inner{padding:.55rem 0}
+.brand{font-weight:800;color:var(--text);text-decoration:none;font-size:1.1rem;letter-spacing:.2px}
+.nav-toggle{display:none;background:transparent;border:1px solid var(--border);padding:.3rem .5rem;border-radius:8px;color:var(--text)}
+.menu{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
+.menu a{color:var(--text);text-decoration:none;padding:.45rem .6rem;border-radius:8px}
+.menu a:hover,.menu a.active{background:color-mix(in oklab, var(--accent) 12%, transparent)}
+.btn-plain{background:transparent;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:.35rem .6rem;cursor:pointer}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%}
+
+main{padding: 0 0 2rem}
+
+/* Cards */
+.card{background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); padding:1rem}
+.card-tilt{transform-style:preserve-3d; transition: transform .15s ease; will-change:transform}
+.card-tilt:hover{transform:perspective(700px) rotateX(3deg) rotateY(-3deg) translateZ(1px)}
+
+/* ===== Hero (Home) ===== */
+.hero{display:grid; grid-template-columns: minmax(520px,1fr) clamp(300px,35vw,420px); gap:28px; align-items:start; padding:1.2rem 0}
+.hero-visual{position:relative; justify-self:end; align-self:start}
+#particles{position:absolute; inset:-20px; z-index:-1; opacity:.75; filter:saturate(120%) blur(.3px)}
+.headshot{width:clamp(280px,35vw,420px); height:clamp(280px,35vw,420px); border-radius:16px; object-fit:cover; border:1px solid var(--border); box-shadow:var(--shadow); display:block}
+.title{font-family:"Source Serif Pro", Georgia, Cambria, "Times New Roman", serif; font-size:clamp(2rem, 3.2vw, 2.8rem); margin:0}
+.sub{color:var(--muted); margin:.2rem 0 1rem}
+.typewrite{min-height:2.2em}
+.caret{display:inline-block; width:1ch; animation:blink 1s steps(2,end) infinite}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+.links{display:flex; align-items:center; flex-wrap:wrap; gap:.6rem; margin:.6rem 0 1rem}
+.btn{display:inline-block; background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; text-decoration:none; padding:.5rem .8rem; border-radius:10px; font-weight:700; border:0}
+.ext{color:var(--accent); text-decoration:underline}
+.sep{opacity:.6; margin:0 .35rem}
+.meta{padding:0; margin:.6rem 0; list-style:none}
+.meta li{margin:.15rem 0}
+
+/* Home grid */
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; width:min(1100px,78%); margin:1rem 0 2rem auto}
+
+/* Timeline */
+.timeline{list-style:none; margin:0; padding:0; border-left:2px solid var(--border); padding-left:1rem}
+.timeline li{position:relative; margin:.6rem 0}
+.timeline li::before{content:""; position:absolute; left:-1.2rem; top:.45rem; width:.7rem; height:.7rem; border-radius:999px; background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+
+/* KPIs */
+.kpis{display:flex; gap:1rem; margin-top:1rem; flex-wrap:wrap}
+.kpi{background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:0 10px 20px rgba(0,0,0,.06); padding:.7rem 1rem; min-width:150px}
+.kpi-num{font-weight:800; font-size:1.5rem; display:block}
+.kpi-label{color:var(--muted)}
+
+/* Research page */
+.toolbar{display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; margin:1rem 0}
+.toolbar input, .toolbar select{padding:.5rem .7rem; border:1px solid var(--border); border-radius:10px; background:var(--surface); color:var(--text)}
+.chips{display:flex; gap:.4rem; flex-wrap:wrap}
+.chip{border:1px solid var(--border); border-radius:999px; background:var(--surface); padding:.25rem .7rem; cursor:pointer}
+.chip.active{background:color-mix(in oklab, var(--accent) 12%, transparent)}
+.project-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+.project{background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); padding:1rem}
+.tags{display:flex; gap:.4rem; list-style:none; padding:0; margin:.6rem 0}
+.tags li{background:color-mix(in oklab, var(--accent) 10%, transparent); border:1px solid var(--border); border-radius:999px; padding:.1rem .5rem; font-size:.85rem}
+.modal{position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:70}
+.modal.show{display:flex}
+.modal-card{background:var(--surface); border:1px solid var(--border); border-radius:12px; max-width:680px; padding:1.1rem 1.2rem; color:var(--text); box-shadow:var(--shadow)}
+
+/* Publications */
+.pubs section{margin-bottom:1rem}
+.pubs ol{padding-left:1.2rem}
+.small{font-size:.9rem}
+.muted{color:var(--muted)}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--border); margin-top:2rem; background:var(--surface)}
+.foot-inner{display:flex; justify-content:space-between; align-items:center; padding:1rem 0; color:var(--muted)}
+.to-top{border:1px solid var(--border); padding:.3rem .6rem; border-radius:8px; text-decoration:none; color:var(--text)}
+
+/* Reveal */
+.reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+.reveal.show{opacity:1; transform:none}
+
+/* Responsive */
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr clamp(260px,30vw,320px); gap:24px}
+  .headshot{width:clamp(240px,30vw,320px); height:clamp(240px,30vw,320px)}
+  .grid{width:92%}
+  .project-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr}
+  .hero-visual{justify-self:start}
+  .headshot{width:200px; height:200px}
+  .grid{width:100%; grid-template-columns:1fr}
+  .nav-toggle{display:block}
+  .menu{display:none; position:absolute; right:4%; top:56px; background:var(--surface); border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow); padding:.5rem; flex-direction:column}
+  .menu.show{display:flex}
+}
+
+/* === HOME LAYOUT FIXES === */
+
+/* Headshot right of text, aligned at the same top level */
+.page-home .hero{
+  grid-template-columns: minmax(520px,1fr) clamp(320px,34vw,420px); /* text | photo */
+  align-items: start;                 /* top edges align */
+}
+.page-home .hero .intro{ align-self: start; }
+.page-home .hero .hero-visual{
+  justify-self: end;                  /* stick to the right */
+  align-self: start;                  /* top-align with text */
+}
+.page-home .headshot{ display:block; } /* kill baseline nudge */
+
+/* Center the “Career Summary” + “Research Snapshot” row */
+.page-home .grid{
+  width: min(1100px, 92%);
+  margin: 1rem auto 2rem;             /* centered */
+}
+
+/* Safety: override any previous right-shift */
+.page-home .grid{ margin-left:auto; margin-right:auto; }
+
+/* === HOME LAYOUT — photo RIGHT, top-aligned; grid centered === */
+.page-home .hero{
+  display: grid;
+  grid-template-columns: minmax(520px,1fr) clamp(320px,34vw,420px); /* text | photo */
+  grid-template-areas: "intro photo";
+  align-items: start;               /* same top level as the heading */
+  gap: 28px;
+}
+.page-home .hero .intro{ grid-area: intro; align-self: start; }
+.page-home .hero .hero-visual{
+  grid-area: photo;
+  justify-self: end;                /* stick to the right edge */
+  align-self: start;
+}
+.page-home .headshot{ display:block; } /* remove img baseline quirks */
+
+/* Center the “Career Summary” + “Research Snapshot” row */
+.page-home .grid{
+  width: min(1100px, 92%) !important;
+  margin: 1rem auto 2rem !important;   /* center on the page */
+}
+
+
+/* Mobile (≤760px): stack neatly and center */
+@media (max-width:760px){
+  .page-home .hero{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "photo"
+      "intro";         /* photo above, text below (swap for intro first) */
+    align-items: start;
+    gap: 16px;
+  }
+  .page-home .hero .hero-visual{ justify-self: center; }
+  .page-home .headshot{ width: 200px; height: 200px; }
+  .page-home .grid{
+    width: 100% !important;
+    margin: 1rem 0 2rem !important;   /* full-width cards, centered */
+  }
+}
+
+/* Fit full headshot inside the frame (letterboxed if needed) */
+.page-home .headshot{
+  width: clamp(280px, 34vw, 420px);
+  aspect-ratio: 3 / 4;         /* matches portrait shape */
+  height: auto;
+  object-fit: contain;          /* no cropping */
+  object-position: center top;  /* keep head high in frame */
+  background: var(--surface);   /* fills the side bands */
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* === Headshot: fill nicely, no white border === */
+.page-home .headshot{
+  /* fill the frame (no letterbox), keep head in view */
+  object-fit: cover;
+  object-position: 50% 18%;
+  /* no frame */
+  border: 0 !important;
+  background: none !important;
+  /* keep the soft shadow only */
+  box-shadow: var(--shadow);
+}
+
+/* === Reduce space between text and picture === */
+.page-home .hero{
+  gap: 16px;                       /* was ~28px */
+}
+
+/* (Optional) bring columns a touch closer on wide screens */
+@media (min-width: 981px){
+  .page-home .hero{
+    grid-template-columns: minmax(520px,1fr) clamp(300px,32vw,400px);
+  }
+}
+
+/* Keep cards centered (in case an older rule pushed them right) */
+.page-home .grid{
+  width: min(1100px, 92%) !important;
+  margin: 1rem auto 2rem !important;
+}
+
+
+
