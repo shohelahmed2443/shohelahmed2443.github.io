@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Shohel Ahmed</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-card {
+      padding: 1.25rem 1.5rem;
+      border-radius: 1rem;
+      background: var(--bg-elevated, #f7f7f7);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .contact-card h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.75rem 0 0;
+      font-size: 0.95rem;
+    }
+
+    .contact-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted, #555);
+      margin-top: 0.5rem;
+    }
+
+    .copy-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.35rem;
+    }
+
+    .copy-btn {
+      border: 1px solid var(--border-subtle, #d4d4d4);
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: var(--bg-elevated, #f8f8f8);
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .copy-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .copy-msg {
+      font-size: 0.8rem;
+      color: var(--accent, #2563eb);
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .copy-msg.visible {
+      opacity: 1;
+    }
+
+    .panel-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .panel {
+      border-radius: 0.8rem;
+      border: 1px solid var(--border-subtle, #ddd);
+      padding: 0.9rem 1rem;
+      background: var(--bg, #fff);
+      font-size: 0.9rem;
+    }
+
+    .panel summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+    }
+
+    .panel summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .panel summary::after {
+      content: "›";
+      float: right;
+      opacity: 0.7;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .panel[open] summary::after {
+      transform: rotate(90deg);
+      opacity: 1;
+    }
+
+    .panel p {
+      margin-top: 0.6rem;
+    }
+
+    @media (max-width: 800px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body class="page-contact">
+  <a class="skip" href="#content">Skip to content</a>
+  
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Shohel Ahmed</a>
+      <nav class="nav">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">☰</button>
+        <ul id="menu" class="menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="teaching.html">Teaching</a></li>
+          <li><a class="active" href="contact.html">Contact</a></li>
+          <li><button id="themeToggle" class="btn-plain" aria-label="Toggle dark mode">☾</button></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="progress" id="progress"></div>
+  </header>
+
+  <main id="content" class="container">
+    <h1>Contact</h1>
+
+    <div class="contact-grid">
+      <!-- Main contact card -->
+      <section class="contact-card">
+        <h2>Get in touch</h2>
+        <ul class="contact-list">
+          <li>
+            <strong>Email:</strong>
+            <div class="copy-row">
+              <a id="emailLink" href="mailto:shohel2@ualberta.ca">shohel2@ualberta.ca</a>
+              <button type="button" class="copy-btn" id="copyEmailBtn">Copy</button>
+              <span id="copyMsg" class="copy-msg">Copied</span>
+            </div>
+          </li>
+          <li>
+            <strong>Affiliation:</strong>
+            PhD Candidate, Department of Mathematical and Statistical Sciences, University of Alberta
+          </li>
+          <li>
+            <strong>Location:</strong>
+            Edmonton, Alberta, Canada
+          </li>
+        </ul>
+        <p class="contact-meta">
+          Email is the best way to reach me for research questions, collaboration ideas, or any inquiries.
+        </p>
+      </section>
+
+      <!-- Guidance / panels -->
+      <section>
+        <div class="panel-group">
+          <details class="panel">
+            <summary>Research collaborations</summary>
+            <p>
+              I welcome collaboration on ecological modelling, dynamical systems, and applications that
+              combine theory with data. In your message, it is helpful to include a brief project outline
+              and any existing data or models you would like to discuss.
+            </p>
+          </details>
+
+          <details class="panel">
+            <summary>Talks, workshops, and reviews</summary>
+            <p>
+              I am happy to consider invitations to give research talks, participate in workshops, or
+              review manuscripts and proposals within my areas of expertise. Please provide relevant
+              dates, format, and topic details in your email.
+            </p>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-inner">
+      <p>© <span id="year"></span> Shohel Ahmed · <span id="lastUpdated"></span></p>
+      <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+
+  <!-- Contact page specific script: copy email -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const copyBtn = document.getElementById("copyEmailBtn");
+      const emailLink = document.getElementById("emailLink");
+      const copyMsg = document.getElementById("copyMsg");
+
+      if (!copyBtn || !emailLink || !copyMsg) return;
+
+      copyBtn.addEventListener("click", function () {
+        const email = emailLink.textContent.trim();
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(function () {
+            copyMsg.classList.add("visible");
+            setTimeout(function () {
+              copyMsg.classList.remove("visible");
+            }, 1500);
+          }).catch(function () {
+            // fallback: select text manually if needed
+            copyMsg.textContent = "Unable to copy";
+            copyMsg.classList.add("visible");
+            setTimeout(function () {
+              copyMsg.classList.remove("visible");
+              copyMsg.textContent = "Copied";
+            }, 1500);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

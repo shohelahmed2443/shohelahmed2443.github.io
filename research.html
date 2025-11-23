@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research — Shohel Ahmed</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    /* Collapsible project styling (page-specific) */
+    .project-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .project {
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .project.open {
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .project-toggle {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
+    }
+
+    .project-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .project-heading h2 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .project-pill {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: var(--bg-elevated, #f4f4f4);
+      color: var(--text-muted, #666);
+      border: 1px solid var(--border-subtle, #ddd);
+    }
+
+    .project-icon {
+      margin-left: auto;
+      font-size: 1.1rem;
+      opacity: 0.7;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .project.open .project-icon {
+      transform: rotate(90deg);
+      opacity: 1;
+    }
+
+    .project-lead {
+      margin: 0.15rem 0 0.4rem;
+      font-size: 0.9rem;
+      color: var(--text-muted, #555);
+    }
+
+    .project-body {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px dashed var(--border-subtle, #ddd);
+      font-size: 0.9rem;
+    }
+
+    .project-body ul {
+      padding-left: 1.1rem;
+      margin: 0.3rem 0 0.7rem;
+    }
+
+    .project-body li {
+      margin-bottom: 0.2rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding-left: 0;
+      margin: 0.2rem 0 0;
+      list-style: none;
+      font-size: 0.78rem;
+    }
+
+    .tags li {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: var(--bg-elevated, #f4f4f4);
+      border: 1px solid var(--border-subtle, #ddd);
+      color: var(--text-muted, #555);
+    }
+
+    .sub-projects > p {
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+      .project-heading {
+        align-items: flex-start;
+      }
+      .project-icon {
+        order: 3;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-research">
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Shohel Ahmed</a>
+      <nav class="nav">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">☰</button>
+        <ul id="menu" class="menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="teaching.html">Teaching</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><button id="themeToggle" class="btn-plain" aria-label="Toggle dark mode">☾</button></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="progress" id="progress"></div>
+  </header>
+
+  <main id="content" class="container pubs">
+    <h1>Research</h1>
+
+    <!-- Search + Filters -->
+    <div class="toolbar">
+      <input id="searchProjects" type="search" placeholder="Search themes..." aria-label="Search projects">
+
+      <div class="chips" role="group" aria-label="Filter by theme">
+        <span class="chip active" data-tag="all">All</span>
+        <span class="chip" data-tag="Foraging">Foraging Behavior</span>
+        <span class="chip" data-tag="Stoichiometry">Ecological Stoichiometry</span>
+        <span class="chip" data-tag="Infectious">Infectious Disease Modelling</span>
+      </div>
+    </div>
+
+    <!-- THEMES GRID -->
+    <section class="project-grid">
+
+      <!-- THEME 1: FORAGING BEHAVIOR -->
+      <article class="project card card-tilt" data-tags="Foraging">
+        <button class="project-toggle" type="button" aria-expanded="false">
+          <div class="project-heading">
+            <h2>Foraging Behavior and Behavioral Plasticity</h2>
+            <span class="project-pill">Theme</span>
+            <span class="project-icon">›</span>
+          </div>
+          <p class="project-lead">
+            How individual foraging decisions, boldness, and personality feed back on population dynamics
+            through adaptive attack rates and trait structure.
+          </p>
+          <ul class="tags">
+            <li>Behavioral Plasticity</li>
+            <li>Foraging</li>
+            <li>PDE ODE</li>
+          </ul>
+        </button>
+
+        <div class="project-body" hidden>
+          <div class="sub-projects">
+            <p>Sub projects:</p>
+            <ul>
+              <li>Behaviorally structured consumer resource PDE ODE systems.</li>
+              <li>Trait evolution under predation risk and food availability.</li>
+              <li>Bifurcation and tipping analysis driven by behavioral change.</li>
+              <li>Noise induced shifts in behaviorally driven dynamics under Gaussian and Levy noise.</li>
+            </ul>
+          </div>
+          <p>
+            These models provide a link between individual level decision making and emergent community
+            level behaviour, with applications to personality dependent predator prey systems and movement
+            between risky and safe patches.
+          </p>
+          <p><a class="ext" href="publications.html">See related publications →</a></p>
+        </div>
+      </article>
+
+      <!-- THEME 2: STOICHIOMETRY -->
+      <article class="project card card-tilt" data-tags="Stoichiometry">
+        <button class="project-toggle" type="button" aria-expanded="false">
+          <div class="project-heading">
+            <h2>Ecological Stoichiometry and Resource Quality</h2>
+            <span class="project-pill">Theme</span>
+            <span class="project-icon">›</span>
+          </div>
+          <p class="project-lead">
+            How elemental imbalance, nutrient quality, and food composition shape adaptive foraging,
+            growth efficiency, and ecosystem stability.
+          </p>
+          <ul class="tags">
+            <li>Stoichiometry</li>
+            <li>Producer Grazer</li>
+            <li>Adaptive Foraging</li>
+          </ul>
+        </button>
+
+        <div class="project-body" hidden>
+          <div class="sub-projects">
+            <p>Sub projects:</p>
+            <ul>
+              <li>Stoichiometric producer grazer models and comparison of Monod and Droop formulations.</li>
+              <li>Optimal foraging strategies under nutrient limitation and enrichment.</li>
+              <li>Stochastic stoichiometric dynamics under environmental variability.</li>
+              <li>Methane induced transitions in aquatic ecosystems and media driven responses.</li>
+            </ul>
+          </div>
+          <p>
+            This theme combines stoichiometric theory with mechanistic foraging rules to understand how
+            changing nutrient regimes, pollution, and greenhouse gas emissions alter consumer resource
+            interactions and ecosystem resilience.
+          </p>
+          <p><a class="ext" href="publications.html">See related publications →</a></p>
+        </div>
+      </article>
+
+      <!-- THEME 3: INFECTIOUS DISEASE -->
+      <article class="project card card-tilt" data-tags="Infectious">
+        <button class="project-toggle" type="button" aria-expanded="false">
+          <div class="project-heading">
+            <h2>Infectious Disease Modelling</h2>
+            <span class="project-pill">Theme</span>
+            <span class="project-icon">›</span>
+          </div>
+          <p class="project-lead">
+            Mechanistic models for HIV, norovirus, diphtheria, and tuberculosis, with emphasis on
+            intervention strategies, climate sensitivity, and within host dynamics.
+          </p>
+          <ul class="tags">
+            <li>Epidemiology</li>
+            <li>Compartmental Models</li>
+            <li>Data Informed</li>
+          </ul>
+        </button>
+
+        <div class="project-body" hidden>
+          <div class="sub-projects">
+            <p>Sub projects:</p>
+            <ul>
+              <li>Hybrid mechanistic and statistical model for climate sensitive norovirus in the United States.</li>
+              <li>Age structured HIV dynamics with PrEP intervention and treatment optimisation.</li>
+              <li>Diphtheria outbreak reconstruction in Rohingya refugee camps and parameter estimation.</li>
+              <li>Within host virus diffusion models with latent stages and global stability analysis.</li>
+            </ul>
+          </div>
+          <p>
+            The goal is to connect mathematical structure with public health interpretation, using
+            dynamical systems tools to study threshold conditions, control strategies, and long term
+            behaviour of infectious diseases.
+          </p>
+          <p><a class="ext" href="publications.html">See related publications →</a></p>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-inner">
+      <p>© <span id="year"></span> Shohel Ahmed · <span id="lastUpdated"></span></p>
+      <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+
+  <!-- Research page specific behaviour: filter + collapsible -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.getElementById("searchProjects");
+      const chips = document.querySelectorAll(".chips .chip");
+      const projects = document.querySelectorAll(".project");
+      const toggles = document.querySelectorAll(".project-toggle");
+
+      if (!projects.length) return;
+
+      let activeTag = "all";
+
+      function applyFilters() {
+        const query = (searchInput?.value || "").trim().toLowerCase();
+
+        projects.forEach(project => {
+          const tags = (project.dataset.tags || "").toLowerCase();
+          const text = project.textContent.toLowerCase();
+          const matchTag = activeTag === "all" || tags.includes(activeTag.toLowerCase());
+          const matchText = !query || text.includes(query);
+
+          const visible = matchTag && matchText;
+          project.style.display = visible ? "" : "none";
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", applyFilters);
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          chips.forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          activeTag = chip.dataset.tag || "all";
+          applyFilters();
+        });
+      });
+
+      // Collapsible behaviour
+      toggles.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const article = btn.closest(".project");
+          const body = article.querySelector(".project-body");
+          const icon = article.querySelector(".project-icon");
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+
+          btn.setAttribute("aria-expanded", expanded ? "false" : "true");
+          body.hidden = expanded;
+          article.classList.toggle("open", !expanded);
+          if (icon) {
+            icon.textContent = expanded ? "›" : "›"; // keep same glyph, rotation via CSS
+          }
+        });
+      });
+
+      applyFilters();
+    });
+  </script>
+</body>
+</html>

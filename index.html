@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shohel Ahmed | Applied Mathematics</title>
+  <meta name="description" content="Academic website of Shohel Ahmed (Applied Mathematics). Research, publications, teaching, and contact." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="page-home">
+  <a class="skip" href="#content">Skip to content</a>
+  
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Shohel Ahmed</a>
+      <nav class="nav">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">☰</button>
+        <ul id="menu" class="menu">
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="teaching.html">Teaching</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><button id="themeToggle" class="btn-plain" aria-label="Toggle dark mode">☾</button></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="progress" id="progress"></div>
+  </header>
+
+  <main id="content">
+    <!-- HERO -->
+    <section class="hero container reveal">
+      <div class="hero-visual">
+        <canvas id="particles" aria-hidden="true"></canvas>
+        <!-- put headshot.jpg in the same folder as index.html, or change the path if it is in assets/ -->
+        <img src="headshot.jpg" alt="Portrait of Shohel Ahmed" class="headshot card-tilt" loading="lazy">
+      </div>
+
+      <div class="intro">
+        <h1 class="title">Shohel Ahmed</h1>
+        <p class="sub">PhD Candidate, Applied Mathematics</p>
+        <p class="sub">University of Alberta</p>
+
+        <p class="typewrite">
+          <span id="typeTarget" data-lines='[
+            "I build ODE, PDE, and stochastic models of ecological dynamics.",
+            "I study behavioral plasticity and foraging strategies.",
+            "I analyze bifurcations, sensitivity, and noise-induced transitions."
+          ]'></span>
+          <span class="caret">|</span>
+        </p>
+
+        <!-- external links row -->
+        <div class="links">
+          <a class="ext" href="https://scholar.google.com" target="_blank" rel="noopener">
+            <img alt="" src="assets/icons/scholar.svg" style="width:18px;height:18px;vertical-align:-3px;margin-right:.3rem">
+            Google Scholar
+          </a>
+          <span class="sep">·</span>
+          <a class="ext" href="https://www.researchgate.net/profile/Shohel-Ahmed" target="_blank" rel="noopener">
+            <img alt="" src="assets/icons/ResearchGate.svg" style="width:18px;height:18px;vertical-align:-3px;margin-right:.3rem">
+            ResearchGate
+          </a>
+          <span class="sep">·</span>
+          <a class="ext" href="https://orcid.org/0000-0002-1639-0950" target="_blank" rel="noopener">
+            <img alt="" src="assets/icons/orcid.svg" style="width:18px;height:18px;vertical-align:-3px;margin-right:.3rem">
+            ORCID
+          </a>
+        </div>
+
+        <!-- CV button row -->
+        <div class="links">
+          <a class="btn" href="Shohel_Ahmed_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+        </div>
+
+        <ul class="meta">
+          <li><b>Email:</b> <a href="mailto:shohel2@ualberta.ca">shohel2@ualberta.ca</a></li>
+          <li><b>Department:</b> Mathematical &amp; Statistical Sciences</li>
+          <li><b>Location:</b> Edmonton, Alberta, Canada</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LOWER GRID -->
+    <section class="container grid reveal">
+      <article class="card card-tilt">
+        <h2>About me</h2>
+        <p>
+          I am a PhD candidate in Applied Mathematics at the University of Alberta, working in the Department
+          of Mathematical and Statistical Sciences under the supervision of Professor Hao Wang. My research
+          focuses on mathematical biology and dynamical systems, with an emphasis on consumer–resource
+          interactions, behavioral plasticity, and ecological tipping points.
+        </p>
+        <p>
+          I am on study leave from my position as an Assistant Professor in the Department of Mathematics at
+          Bangladesh University of Engineering and Technology (BUET). My broader interests include ecological
+          modelling, infectious disease dynamics, and environmental applications such as methane emissions and
+          ecotoxicology.
+        </p>
+      </article>
+
+      <article class="card card-tilt">
+        <h2>Research snapshot</h2>
+        <p>
+          Personality structured consumer–resource models (PDE–ODE), stoichiometric foraging theory, and
+          stochastic tipping under Gaussian and Lévy noise. Current work links individual level behavior and
+          trait variation to population dynamics and ecosystem responses.
+        </p>
+        <p><a href="research.html" class="ext">Explore projects →</a></p>
+        <div class="kpis">
+          <!-- update counts when you like -->
+          <div class="kpi">
+            <span class="kpi-num" data-count="14">0</span>
+            <span class="kpi-label">Journal papers</span>
+          </div>
+          <div class="kpi">
+            <span class="kpi-num" data-count="7">0</span>
+            <span class="kpi-label">Active projects</span>
+          </div>
+          <div class="kpi">
+            <span class="kpi-num" data-count="6">0</span>
+            <span class="kpi-label">Courses taught / TA</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-inner">
+      <p>© <span id="year"></span> Shohel Ahmed · <span id="lastUpdated"></span></p>
+      <a class="to-top" href="#top" aria-label="Back to top">↑</a>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
