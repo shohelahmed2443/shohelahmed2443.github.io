@@ -126,7 +126,7 @@
 
     /* Simple slideshow styling */
 .research-gallery {
-  margin-top: 3rem;
+  text-align: center;
 }
 
 .research-gallery h2 {
@@ -136,22 +136,19 @@
 
 .slideshow {
   position: relative;
-  width: 100%;
+  display: inline-block;
   margin: 0 auto;
 
-  /* allow container to expand to the natural image size */
-  display: inline-block;
-  text-align: center;
+  /* only wrap the image size */
+  width: auto;
+  max-width: 100%;
 
   border-radius: 16px;
   background: var(--bg-elevated, #f4f4f4);
-
-  /* remove hard clipping */
   overflow: visible;
-
-  /* smooth shadow that adapts to the container shape */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
+
 
 
 .slides {
