@@ -1,561 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Research — Shohel Ahmed</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/style.css" />
-
-  <style>
-    /* Collapsible project styling (page-specific) */
-    .project-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-
-    .project {
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .project.open {
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-      transform: translateY(-2px);
-    }
-
-    .project-toggle {
-      width: 100%;
-      text-align: left;
-      background: transparent;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      color: inherit;
-      font: inherit;
-    }
-
-    .project-heading {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .project-heading h2 {
-      margin: 0;
-      font-size: 1.1rem;
-    }
-
-    .project-pill {
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      background: var(--bg-elevated, #f4f4f4);
-      color: var(--text-muted, #666);
-      border: 1px solid var(--border-subtle, #ddd);
-    }
-
-    .project-icon {
-      margin-left: auto;
-      font-size: 1.1rem;
-      opacity: 0.7;
-      transition: transform 0.18s ease, opacity 0.18s ease;
-    }
-
-    .project.open .project-icon {
-      transform: rotate(90deg);
-      opacity: 1;
-    }
-
-    .project-lead {
-      margin: 0.15rem 0 0.4rem;
-      font-size: 0.9rem;
-      color: var(--text-muted, #555);
-    }
-
-    .project-body {
-      margin-top: 0.6rem;
-      padding-top: 0.6rem;
-      border-top: 1px dashed var(--border-subtle, #ddd);
-      font-size: 0.9rem;
-    }
-
-    .project-body ul {
-      padding-left: 1.1rem;
-      margin: 0.3rem 0 0.7rem;
-    }
-
-    .project-body li {
-      margin-bottom: 0.2rem;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      padding-left: 0;
-      margin: 0.2rem 0 0;
-      list-style: none;
-      font-size: 0.78rem;
-    }
-
-    .tags li {
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
-      background: var(--bg-elevated, #f4f4f4);
-      border: 1px solid var(--border-subtle, #ddd);
-      color: var(--text-muted, #555);
-    }
-
-    .sub-projects > p {
-      margin-bottom: 0.25rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 700px) {
-      .project-heading {
-        align-items: flex-start;
-      }
-      .project-icon {
-        order: 3;
-      }
-    }
-
-    /* Simple slideshow styling */
-    .research-gallery {
-      margin-top: 3rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;   /* center the slideshow card */
-    }
-
-    .research-gallery h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.75rem;
-    }
-
-    /* Card that holds the image + arrows + dots */
-    .slideshow {
-      position: relative;
-      display: inline-block;
-      margin: 0 auto;
-
-      width: 100%;
-      max-width: 1100px;      /* overall card width on large screens */
-      border-radius: 16px;
-      background: var(--bg-elevated, #f4f4f4);
-      overflow: hidden;       /* keep rounded corners on images */
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
-
-    .slides {
-      position: relative;
-    }
-
-    .slide {
-      display: none;
-    }
-
-    .slide.active {
-      display: block;
-    }
-
-    .slide img {
-      display: block;
-      width: 100%;       /* image fills card width */
-      height: auto;      /* keep aspect ratio */
-      margin: 0 auto;
-    }
-
-    .slide figcaption {
-      padding: 0.5rem 0.9rem 0.8rem;
-      font-size: 0.85rem;
-      color: var(--text-muted, #555);
-    }
-
-    /* Navigation arrows */
-    .slide-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      border: none;
-      background: rgba(0, 0, 0, 0.35);
-      color: #fff;
-      font-size: 1.4rem;
-      width: 2.3rem;
-      height: 2.3rem;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .slide-nav:hover {
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .slide-nav.prev {
-      left: 0.75rem;
-    }
-
-    .slide-nav.next {
-      right: 0.75rem;
-    }
-
-    /* Dots */
-    .slide-dots {
-      position: absolute;
-      bottom: 0.45rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 0.35rem;
-    }
-
-    .slide-dots .dot {
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 999px;
-      border: none;
-      background: rgba(255, 255, 255, 0.6);
-      cursor: pointer;
-    }
-
-    .slide-dots .dot.active {
-      background: rgba(255, 255, 255, 0.95);
-    }
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Research in mathematical biology, ecological dynamics, behavioural modelling, and data-driven dynamical systems.">
+<title>Research | Shohel Ahmed</title>
+<link rel="stylesheet" href="assets/style.css">
 </head>
-
-<body class="page-research">
-  <a class="skip" href="#content">Skip to content</a>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html">Shohel Ahmed</a>
-      <nav class="nav">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">☰</button>
-        <ul id="menu" class="menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a class="active" href="research.html">Research</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="teaching.html">Teaching</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><button id="themeToggle" class="btn-plain" aria-label="Toggle dark mode">☾</button></li>
-        </ul>
-      </nav>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">Shohel<span class="brand-dot">.</span></a>
+    <nav id="navLinks" class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">◐</button>
+      <button id="menuToggle" class="menu-btn" aria-label="Open navigation" aria-expanded="false">☰</button>
     </div>
-    <div class="progress" id="progress"></div>
-  </header>
+  </div>
+  <div id="progress" class="progress"></div>
+</header>
+<main id="content">
 
-  <main id="content" class="container pubs">
-    <h1>Research</h1>
-
-    <!-- Search + Filters -->
-    <div class="toolbar">
-      <input id="searchProjects" type="search" placeholder="Search themes..." aria-label="Search projects">
-
-      <div class="chips" role="group" aria-label="Filter by theme">
-        <span class="chip active" data-tag="all">All</span>
-        <span class="chip" data-tag="Foraging">Foraging Behavior</span>
-        <span class="chip" data-tag="Stoichiometry">Ecological Stoichiometry</span>
-        <span class="chip" data-tag="Infectious">Infectious Disease Modelling</span>
-      </div>
+<section class="container page-hero">
+  <div class="badge"><span class="badge-dot"></span>Research portfolio</div>
+  <h1>Research</h1>
+  <p class="lead">I study how behaviour, environmental forcing, and biological interactions generate population-level and ecosystem-level dynamics. My work ranges from mechanistic ODE/PDE systems and bifurcation theory to empirical dynamical modelling and hybrid data-driven approaches.</p>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">Themes</div><div><h2>Research directions</h2></div></div>
+    <div id="researchGrid" class="grid"></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">Projects</div><div><h2>Featured projects & collaborations</h2><p class="intro">Search and filter the project cards, then expand each card for collaborators and context.</p></div></div>
+    <input id="projectSearch" class="search" type="search" placeholder="Search projects, methods, topics..." aria-label="Search research projects">
+    <div class="project-toolbar">
+      <button class="tab active" data-project-filter="all">All</button>
+      <button class="tab" data-project-filter="behaviour">Behaviour</button>
+      <button class="tab" data-project-filter="stoichiometry">Stoichiometry</button>
+      <button class="tab" data-project-filter="environment">Environment</button>
     </div>
-
-    <!-- THEMES GRID -->
-    <section class="project-grid">
-
-      <!-- THEME 1: FORAGING BEHAVIOR -->
-      <article class="project card card-tilt" data-tags="Foraging">
-        <button class="project-toggle" type="button" aria-expanded="false">
-          <div class="project-heading">
-            <h2>Foraging Behavior</h2>
-            <span class="project-pill">Theme</span>
-            <span class="project-icon">›</span>
-          </div>
-          <p class="project-lead">
-            How individual foraging decisions, boldness, and personality feed back on population dynamics
-            through adaptive attack rates and phenotype structure.
-          </p>
-          <ul class="tags">
-            <li>Behavioral Plasticity</li>
-            <li>Foraging</li>
-            <li>PDE ODE</li>
-          </ul>
-        </button>
-
-        <div class="project-body" hidden>
-          <div class="sub-projects">
-            <p>Sub projects:</p>
-            <ul>
-              <li>Behaviorally structured consumer-resource PDE-ODE systems.</li>
-              <li>Trait evolution under predation risk and food availability.</li>
-              <li>Bifurcation and tipping analysis driven by behavioral change.</li>
-              <li>Noise induced shifts in behaviorally driven dynamics under Gaussian and Levy noise.</li>
-            </ul>
-          </div>
-          <p>
-            These models provide a link between individual level decision making and emergent community
-            level behaviour, with applications to personality dependent predator-Prey systems and movement
-            between risky and safe patches.
-          </p>
-          <p><a class="ext" href="publications.html">See related publications →</a></p>
-        </div>
-      </article>
-
-      <!-- THEME 2: STOICHIOMETRY -->
-      <article class="project card card-tilt" data-tags="Stoichiometry">
-        <button class="project-toggle" type="button" aria-expanded="false">
-          <div class="project-heading">
-            <h2>Ecological Stoichiometry</h2>
-            <span class="project-pill">Theme</span>
-            <span class="project-icon">›</span>
-          </div>
-          <p class="project-lead">
-            How elemental imbalance, nutrient quality, and food composition shape adaptive foraging,
-            growth efficiency, and ecosystem stability.
-          </p>
-          <ul class="tags">
-            <li>Stoichiometry</li>
-            <li>Producer Grazer</li>
-            <li>Adaptive Foraging</li>
-          </ul>
-        </button>
-
-        <div class="project-body" hidden>
-          <div class="sub-projects">
-            <p>Sub projects:</p>
-            <ul>
-              <li>Stoichiometric producer grazer models and comparison of Monod and Droop formulations.</li>
-              <li>Optimal foraging strategies under nutrient limitation and enrichment.</li>
-              <li>Stochastic stoichiometric dynamics under environmental variability.</li>
-              <li>Methane induced transitions in aquatic ecosystems and media driven responses.</li>
-            </ul>
-          </div>
-          <p>
-            This theme combines stoichiometric theory with mechanistic foraging rules to understand how
-            changing nutrient regimes, pollution, and greenhouse gas emissions alter consumer-resource
-            interactions and ecosystem resilience.
-          </p>
-          <p><a class="ext" href="publications.html">See related publications →</a></p>
-        </div>
-      </article>
-
-      <!-- THEME 3: INFECTIOUS DISEASE -->
-      <article class="project card card-tilt" data-tags="Infectious">
-        <button class="project-toggle" type="button" aria-expanded="false">
-          <div class="project-heading">
-            <h2>Infectious Disease Modelling</h2>
-            <span class="project-pill">Theme</span>
-            <span class="project-icon">›</span>
-          </div>
-          <p class="project-lead">
-            Mechanistic models for HIV, norovirus, diphtheria, and tuberculosis, with emphasis on
-            intervention strategies, climate sensitivity, and within host dynamics.
-          </p>
-          <ul class="tags">
-             <li>Compartmental Models</li>
-            <li>Epidemiology</li>
-            <li>Data Informed</li>
-          </ul>
-        </button>
-
-        <div class="project-body" hidden>
-          <div class="sub-projects">
-            <p>Sub projects:</p>
-            <ul>
-              <li>Hybrid mechanistic and statistical model for climate sensitive norovirus in the United States.</li>
-              <li>Age structured HIV dynamics with PrEP intervention and treatment optimisation.</li>
-              <li>Diphtheria outbreak reconstruction in Rohingya refugee camps and parameter estimation.</li>
-              <li>Within host virus diffusion models with latent stages and global stability analysis.</li>
-            </ul>
-          </div>
-          <p>
-            The goal is to connect mathematical structure with public health interpretation, using
-            dynamical systems tools to study threshold conditions, control strategies, and long term
-            behaviour of infectious diseases.
-          </p>
-          <p><a class="ext" href="publications.html">See related publications →</a></p>
-        </div>
-      </article>
-
-    </section>
-
-    <!-- RESEARCH IMAGE SLIDESHOW -->
-    <section class="research-gallery">
-      <h2>Research snapshots</h2>
-      <div class="slideshow" aria-label="Research image slideshow">
-        <div class="slides">
-          <figure class="slide active">
-            <img src="assets/images/research1.png" alt="Bifurcation structure of a consumer-resource model">
-            <figcaption>Bifurcation structure for behaviourally structured consumer-resource dynamics.</figcaption>
-            </figure>
-          <figure class="slide">
-            <img src="assets/images/research0.png" alt="Stoichiometric producer grazer simulation">
-            <figcaption>Aquatic toxicology assessment in oil sands processed-affected water (OSPW).</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="assets/images/research2.png" alt="Stoichiometric producer grazer simulation">
-            <figcaption>Stoichiometric producer grazer simulations illustrating nutrient driven selection.</figcaption>
-          </figure>
-          <figure class="slide">
-            <img src="assets/images/research3.png" alt="Infectious disease model fit to data">
-            <figcaption>Infectious disease model output aligned with surveillance data for an outbreak.</figcaption>
-          </figure>
-        </div>
-
-        <button class="slide-nav prev" type="button" aria-label="Previous slide">‹</button>
-        <button class="slide-nav next" type="button" aria-label="Next slide">›</button>
-
-        <div class="slide-dots" aria-hidden="true">
-          <button class="dot active" type="button"></button>
-          <button class="dot" type="button"></button>
-          <button class="dot" type="button"></button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container foot-inner">
-      <p>© <span id="year"></span> Shohel Ahmed · <span id="lastUpdated"></span></p>
-      <a class="to-top" href="#top" aria-label="Back to top">↑</a>
-    </div>
-  </footer>
-
-  <script src="assets/script.js"></script>
-
-  <!-- Research page specific behaviour: filter + collapsible + slideshow -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const searchInput = document.getElementById("searchProjects");
-      const chips = document.querySelectorAll(".chips .chip");
-      const projects = document.querySelectorAll(".project");
-      const toggles = document.querySelectorAll(".project-toggle");
-
-      if (!projects.length) return;
-
-      let activeTag = "all";
-
-      function applyFilters() {
-        const query = (searchInput?.value || "").trim().toLowerCase();
-
-        projects.forEach(project => {
-          const tags = (project.dataset.tags || "").toLowerCase();
-          const text = project.textContent.toLowerCase();
-          const matchTag = activeTag === "all" || tags.includes(activeTag.toLowerCase());
-          const matchText = !query || text.includes(query);
-
-          const visible = matchTag && matchText;
-          project.style.display = visible ? "" : "none";
-        });
-      }
-
-      if (searchInput) {
-        searchInput.addEventListener("input", applyFilters);
-      }
-
-      chips.forEach(chip => {
-        chip.addEventListener("click", () => {
-          chips.forEach(c => c.classList.remove("active"));
-          chip.classList.add("active");
-          activeTag = chip.dataset.tag || "all";
-          applyFilters();
-        });
-      });
-
-      // Collapsible behaviour
-      toggles.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const article = btn.closest(".project");
-          const body = article.querySelector(".project-body");
-          const icon = article.querySelector(".project-icon");
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-
-          btn.setAttribute("aria-expanded", expanded ? "false" : "true");
-          body.hidden = expanded;
-          article.classList.toggle("open", !expanded);
-          if (icon) {
-            icon.textContent = expanded ? "›" : "›"; // rotation via CSS
-          }
-        });
-      });
-
-      // Simple slideshow logic
-      const slideshow = document.querySelector(".slideshow");
-      if (slideshow) {
-        const slides = Array.from(slideshow.querySelectorAll(".slide"));
-        const prevBtn = slideshow.querySelector(".slide-nav.prev");
-        const nextBtn = slideshow.querySelector(".slide-nav.next");
-        const dots = Array.from(slideshow.querySelectorAll(".dot"));
-        let index = 0;
-        let timerId = null;
-
-        function showSlide(i) {
-          index = (i + slides.length) % slides.length;
-          slides.forEach((slide, k) => {
-            slide.classList.toggle("active", k === index);
-          });
-          dots.forEach((dot, k) => {
-            dot.classList.toggle("active", k === index);
-          });
-        }
-
-        function nextSlide() {
-          showSlide(index + 1);
-        }
-
-        function prevSlide() {
-          showSlide(index - 1);
-        }
-
-        function startAuto() {
-          stopAuto();
-          timerId = setInterval(nextSlide, 6000);
-        }
-
-        function stopAuto() {
-          if (timerId) {
-            clearInterval(timerId);
-            timerId = null;
-          }
-        }
-
-        if (nextBtn) {
-          nextBtn.addEventListener("click", () => {
-            nextSlide();
-            startAuto();
-          });
-        }
-        if (prevBtn) {
-          prevBtn.addEventListener("click", () => {
-            prevSlide();
-            startAuto();
-          });
-        }
-
-        dots.forEach((dot, i) => {
-          dot.addEventListener("click", () => {
-            showSlide(i);
-            startAuto();
-          });
-        });
-
-        slideshow.addEventListener("mouseenter", stopAuto);
-        slideshow.addEventListener("mouseleave", startAuto);
-
-        showSlide(0);
-        startAuto();
-      }
-
-      applyFilters();
-    });
-  </script>
-</body>
-</html>
+    <div id="featuredProjects" class="grid"></div>
+  </div>
+</section>
+<section class="section">
+  <div class="container two-col">
+    <article class="card reveal"><div class="eyebrow">Current interdisciplinary work</div><h3>Oil-sands methane & aquatic ecosystems</h3><p>Since May 2023, I have contributed to an NSERC Alliance Missions project on methane emissions from Alberta oil-sands territories. My work includes modelling hydrocarbon biodegradation and greenhouse-gas emissions and collaborating with Dr. Keith Tierney’s laboratory on mathematical analysis of methane impacts on aquatic systems, including zebrafish physiological data.</p></article>
+    <article class="card reveal"><div class="eyebrow">Methods</div><h3>Mechanistic + data-driven modelling</h3><p>I am especially interested in frameworks that preserve biological mechanism while learning from data: bifurcation analysis, structured population models, stochastic systems, empirical dynamical modelling, S-maps, convergent cross mapping, machine learning, and universal differential equations.</p></article>
+  </div>
+</section>
+</main>
+<footer><div class="container">© <span id="year"></span> Shohel Ahmed · Built for research, teaching, and collaboration.</div></footer>
+<script src="assets/data.js"></script>
+<script src="assets/script.js"></script>
+</body></html>
