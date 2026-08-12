@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Shohel Ahmed — PhD Candidate in Applied Mathematics at the University of Alberta. Mathematical biology, ecological dynamics, behavioural modelling and data-driven methods.">
+<title>Shohel Ahmed | Applied Mathematics & Mathematical Biology</title>
+
+<style>
+:root{
+  --bg:#f6f8fb;
+  --panel:rgba(255,255,255,.78);
+  --panel-solid:#fff;
+  --text:#101827;
+  --muted:#627083;
+  --line:#dfe6ee;
+  --accent:#0b7a70;
+  --accent2:#2458b8;
+  --soft:#e0f4f1;
+  --soft2:#eaf0fb;
+  --shadow:0 20px 60px rgba(30,50,80,.10);
+  --radius:24px;
+  --max:1160px;
+}
+html[data-theme="dark"]{
+  --bg:#09111d;
+  --panel:rgba(15,27,41,.82);
+  --panel-solid:#111d2a;
+  --text:#f4f7fb;
+  --muted:#a8b5c4;
+  --line:#26384a;
+  --accent:#5be0cf;
+  --accent2:#8eb6ff;
+  --soft:#153d39;
+  --soft2:#152847;
+  --shadow:0 20px 60px rgba(0,0,0,.30);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 0%,rgba(20,184,166,.13),transparent 27%),
+    radial-gradient(circle at 92% 11%,rgba(59,130,246,.12),transparent 24%),
+    var(--bg);
+  line-height:1.65;
+}
+body::before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:-1;
+  background-image:linear-gradient(rgba(120,140,160,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(120,140,160,.045) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 75%);
+}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+.wrap{width:min(var(--max),calc(100% - 32px));margin:auto}
+
+.nav{
+  position:sticky;top:0;z-index:50;
+  border-bottom:1px solid color-mix(in srgb,var(--line) 82%,transparent);
+  background:color-mix(in srgb,var(--bg) 78%,transparent);
+  backdrop-filter:blur(16px);
+}
+.navin{height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-weight:900;letter-spacing:-.04em;font-size:1.08rem}
+.brand span{color:var(--accent)}
+.navlinks{
+  display:flex;gap:6px;align-items:center;
+  padding:5px;border:1px solid var(--line);border-radius:999px;
+  background:var(--panel);
+}
+.navlinks a{
+  position:relative;
+  padding:8px 12px;border-radius:999px;color:var(--muted);
+  font-size:.9rem;font-weight:750;white-space:nowrap;
+  transition:.2s background,.2s color,.2s transform;
+}
+.navlinks a:hover{
+  background:var(--soft);
+  color:var(--accent);
+  transform:translateY(-1px);
+}
+.navlinks a.active{
+  background:var(--accent);
+  color:white;
+  box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 22%,transparent);
+}
+html[data-theme="dark"] .navlinks a.active{color:#071412}
+.iconbtn{
+  width:42px;height:42px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line);background:var(--panel);color:var(--text)
+}
+
+.hero{
+  min-height:82vh;
+  display:grid;grid-template-columns:1.22fr .78fr;
+  align-items:start;gap:64px;padding:76px 0 58px;
+}
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:7px 12px;border-radius:999px;background:var(--soft);color:var(--accent);
+  font-weight:800;font-size:.86rem;border:1px solid color-mix(in srgb,var(--accent) 16%,transparent);
+}
+.kicker i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 15%,transparent)}
+h1{
+  margin:18px 0 16px;font-size:clamp(3.6rem,8.6vw,7rem);
+  line-height:.91;letter-spacing:-.072em;max-width:860px
+}
+.gradient{
+  background:linear-gradient(100deg,var(--text) 0%,var(--accent) 50%,var(--accent2) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.lead{font-size:clamp(1.08rem,2vw,1.32rem);color:var(--muted);max-width:770px;margin:0}
+.dynamic-line{margin-top:16px;min-height:28px;color:var(--accent);font-weight:750}
+.caret{display:inline-block;width:2px;height:1.1em;background:currentColor;vertical-align:-2px;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 16px;border-radius:14px;font-weight:800;
+  border:1px solid var(--line);background:var(--panel);transition:.2s transform,.2s border-color
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:white}
+html[data-theme="dark"] .btn.primary{color:#071412}
+
+.visual{
+  position:relative;
+  width:min(100%,360px);
+  aspect-ratio:4/5;
+  justify-self:end;
+  align-self:start;
+  margin-top:4px;
+  border-radius:32px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  background:linear-gradient(145deg,var(--soft),var(--soft2));
+}
+.visual img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+  position:relative;
+  z-index:2;
+}
+.visual .fallback{
+  position:absolute;inset:0;display:grid;place-items:center;font-size:7rem;font-weight:900;
+  letter-spacing:-.08em;color:var(--accent);z-index:1
+}
+.visual::after{
+  content:"";position:absolute;inset:auto 18px 18px 18px;height:56px;border-radius:15px;
+  background:rgba(255,255,255,.16);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.24);z-index:3
+}
+.visual-label{position:absolute;left:34px;bottom:35px;z-index:4;color:white;font-weight:800;font-size:.9rem;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.orbit{position:absolute;border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:50%;pointer-events:none}
+.o1{width:150px;height:150px;top:-42px;right:-38px}
+.o2{width:230px;height:230px;bottom:-90px;left:-90px}
+
+section{padding:74px 0;scroll-margin-top:74px}
+.section-head{display:grid;grid-template-columns:210px 1fr;gap:30px;align-items:start;margin-bottom:30px}
+.eyebrow{font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:900}
+h2{font-size:clamp(2.1rem,4vw,3.45rem);line-height:1.04;letter-spacing:-.048em;margin:0}
+.intro{color:var(--muted);max-width:820px;margin:12px 0 0}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:26px}
+.stat{
+  padding:20px;border:1px solid var(--line);border-radius:20px;background:var(--panel);box-shadow:var(--shadow)
+}
+.stat strong{display:block;font-size:2rem;letter-spacing:-.04em}
+.stat span{color:var(--muted);font-size:.91rem}
+
+.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+.pill{padding:5px 9px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:.78rem;font-weight:800}
+
+.research-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.research-card{
+  position:relative;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
+  box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:.22s transform,.22s border-color
+}
+.research-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.research-card::before{
+  content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))
+}
+.research-card h3{font-size:1.2rem;letter-spacing:-.025em;margin:0 0 8px}
+.research-card p{margin:0;color:var(--muted)}
+.more{max-height:0;overflow:hidden;opacity:0;transition:.35s max-height,.25s opacity;margin-top:0}
+.research-card.open .more{max-height:180px;opacity:1;margin-top:14px}
+.expand{display:flex;justify-content:space-between;align-items:center;margin-top:18px;color:var(--accent);font-weight:800;font-size:.9rem}
+.expand b{font-size:1.3rem;transition:.25s transform}
+.research-card.open .expand b{transform:rotate(45deg)}
+
+.pub-controls{
+  display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-bottom:16px
+}
+.search{
+  width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:14px;background:var(--panel-solid);color:var(--text);outline:none
+}
+.search:focus{border-color:var(--accent)}
+.filters{display:flex;gap:7px;flex-wrap:wrap}
+.filter{
+  padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer
+}
+.filter.active{background:var(--accent);border-color:var(--accent);color:white}
+.pub-panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);box-shadow:var(--shadow);padding:8px 22px}
+.pub{
+  display:grid;grid-template-columns:58px 1fr;gap:15px;padding:18px 0;border-bottom:1px solid var(--line)
+}
+.pub:last-child{border-bottom:0}
+.year{font-weight:900;color:var(--accent)}
+.pub-title{font-weight:820;letter-spacing:-.015em}
+.pub-meta{color:var(--muted);font-size:.92rem;margin-top:4px}
+.badge{display:inline-flex;padding:3px 7px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:.72rem;font-weight:850;margin-left:7px;vertical-align:1px}
+.results{color:var(--muted);font-size:.9rem;margin:10px 0 0}
+
+.timeline{display:grid;gap:3px}
+.timeline-row{
+  display:grid;grid-template-columns:155px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)
+}
+.timeline-date{font-weight:900;color:var(--accent)}
+.timeline-title{font-weight:820}
+.timeline-sub{color:var(--muted);margin-top:3px}
+
+.awards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.award{
+  padding:22px;border:1px solid var(--line);border-radius:22px;background:var(--panel);box-shadow:var(--shadow)
+}
+.award h3{margin:0 0 7px;font-size:1.12rem}.award p{margin:0;color:var(--muted)}
+
+.contact{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;
+  padding:38px;border-radius:30px;border:1px solid var(--line);background:var(--panel);box-shadow:var(--shadow)
+}
+.contact-links{display:grid;gap:9px}
+.contact-links a{
+  display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--panel-solid)
+}
+.contact-links span{color:var(--muted)}
+.contact-links a:hover{border-color:var(--accent)}
+
+footer{padding:30px 0 48px;text-align:center;color:var(--muted);font-size:.9rem}
+.reveal{opacity:0;transform:translateY(14px);transition:.6s opacity,.6s transform}
+.reveal.show{opacity:1;transform:none}
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;z-index:100}
+
+@media(max-width:880px){
+  .navin{height:auto;min-height:72px;flex-wrap:wrap;padding:10px 0}
+  .brand{flex:1}
+  .navlinks{
+    order:3;width:100%;overflow-x:auto;justify-content:flex-start;
+    scrollbar-width:none;border-radius:16px;padding:5px;
+  }
+  .navlinks::-webkit-scrollbar{display:none}
+  .navlinks a{flex:0 0 auto}
+  .hero{grid-template-columns:1fr;min-height:auto}.visual{justify-self:center;width:min(82vw,340px);margin-top:10px}
+  .section-head{grid-template-columns:1fr;gap:9px}.stats{grid-template-columns:1fr 1fr}
+  .research-grid,.awards,.contact{grid-template-columns:1fr}.pub-controls{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .wrap{width:min(var(--max),calc(100% - 22px))}.hero{padding-top:52px}h1{font-size:3.45rem}
+  .timeline-row{grid-template-columns:1fr;gap:4px}.pub{grid-template-columns:48px 1fr}
+  .stats{grid-template-columns:1fr 1fr}.contact{padding:25px}
+}
+</style>
+</head>
+
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="nav">
+  <div class="wrap navin">
+    <a href="#top" class="brand">Shohel<span>.</span></a>
+    <div class="navlinks">
+      <a href="#about" data-section="about">About</a>
+      <a href="#research" data-section="research">Research</a>
+      <a href="#publications" data-section="publications">Publications</a>
+      <a href="#teaching" data-section="teaching">Teaching</a>
+      <a href="#talks" data-section="talks">Talks</a>
+      <a href="#awards" data-section="awards">Awards</a>
+      <a href="#contact" data-section="contact">Contact</a>
+    </div>
+    <button class="iconbtn" id="themeToggle" aria-label="Toggle light or dark mode">◐</button>
+  </div>
+</nav>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <div class="kicker"><i></i>PhD Candidate · Applied Mathematics · University of Alberta</div>
+      <h1><span class="gradient">Shohel Ahmed</span></h1>
+      <p class="lead">I use mathematics to understand how behaviour, environmental change, and biological interactions shape ecological and population dynamics.</p>
+      <div class="dynamic-line"><span id="typeText"></span><span class="caret"></span></div>
+      <div class="actions">
+        <a class="btn primary" href="#research">Explore my research ↓</a>
+        <a class="btn" href="#publications">Publications</a>
+        <a class="btn" href="Shohel_Ahmed_CV.pdf" target="_blank" rel="noopener">Download CV ↗</a>
+        <a class="btn" href="mailto:shohel2@ualberta.ca">Email me</a>
+      </div>
+    </div>
+
+    <div class="visual reveal">
+      <div class="fallback">SA</div>
+      <img src="headshot.jpg" alt="Portrait of Shohel Ahmed" onerror="this.style.display='none'">
+      <div class="orbit o1"></div>
+      <div class="orbit o2"></div>
+      <div class="visual-label">Shohel Ahmed · Applied Mathematics</div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">About</div>
+        <div>
+          <h2>From individual behaviour to ecosystem dynamics.</h2>
+          <p class="intro">
+            I am a PhD candidate in Applied Mathematics in the Department of Mathematical and Statistical Sciences at the University of Alberta, supervised by Prof. Hao Wang. My dissertation, <em>Modelling Foraging Behaviour in Ecological Dynamics</em>, focuses on mathematical biology, dynamical systems, behavioural plasticity, consumer–resource interactions, stoichiometry, and data-driven ecological modelling. I am also an Assistant Professor (on study leave) at Bangladesh University of Engineering and Technology (BUET).
+          </p>
+          <div class="stats">
+            <div class="stat"><strong data-count="14">0</strong><span>Published / accepted journal papers</span></div>
+            <div class="stat"><strong data-count="2026">0</strong><span>Expected PhD completion</span></div>
+            <div class="stat"><strong data-count="4">0</strong><span>Core research directions</span></div>
+            <div class="stat"><strong data-count="10">0</strong><span>Recent talks & workshops</span></div>
+          </div>
+          <div class="pills">
+            <span class="pill">Mathematical Biology</span>
+            <span class="pill">Ecological Dynamics</span>
+            <span class="pill">Behavioural Plasticity</span>
+            <span class="pill">ODE / PDE</span>
+            <span class="pill">Stochastic Models</span>
+            <span class="pill">EDM & Machine Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Research</div>
+        <div>
+          <h2>Research questions built around mechanism.</h2>
+          <p class="intro">Click a research area to expand it. My current work connects mechanistic models, dynamical systems, stochastic processes, and data-driven methods.</p>
+        </div>
+      </div>
+      <div class="research-grid" id="researchGrid"></div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Publications</div>
+        <div>
+          <h2>Published, accepted, and under review.</h2>
+          <p class="intro">Search by title, author, journal, or year. Manuscripts in preparation are intentionally omitted.</p>
+        </div>
+      </div>
+
+      <div class="pub-controls">
+        <input class="search" id="pubSearch" type="search" placeholder="Search publications..." aria-label="Search publications">
+        <div class="filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="published">Published / Accepted</button>
+          <button class="filter" data-filter="review">Under review</button>
+        </div>
+      </div>
+
+      <div class="pub-panel" id="publicationList"></div>
+      <div class="results" id="pubCount"></div>
+    </div>
+  </section>
+
+  <section id="teaching">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Teaching</div>
+        <div>
+          <h2>Teaching mathematics across levels and contexts.</h2>
+          <p class="intro">Experience includes engineering calculus, mathematical modelling, tutorials, assessment, mentoring, and interdisciplinary research training.</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-row reveal">
+          <div class="timeline-date">Fall 2026</div>
+          <div><div class="timeline-title">Principal Instructor · MATH 209 — Calculus for Engineering III</div><div class="timeline-sub">University of Alberta</div></div>
+        </div>
+        <div class="timeline-row reveal">
+          <div class="timeline-date">2021–Present</div>
+          <div><div class="timeline-title">Research & Teaching Assistant</div><div class="timeline-sub">Department of Mathematical and Statistical Sciences, University of Alberta</div></div>
+        </div>
+        <div class="timeline-row reveal">
+          <div class="timeline-date">Fall 2022 & 2023</div>
+          <div><div class="timeline-title">Guest Instructor · MATH 572 — Mathematical Modelling in Industry, Government, and Sciences</div><div class="timeline-sub">University of Alberta</div></div>
+        </div>
+        <div class="timeline-row reveal">
+          <div class="timeline-date">Fall 2022</div>
+          <div><div class="timeline-title">Principal Instructor · MATH 100 — Calculus for Engineering I</div><div class="timeline-sub">University of Alberta</div></div>
+        </div>
+        <div class="timeline-row reveal">
+          <div class="timeline-date">2014–Present</div>
+          <div><div class="timeline-title">Assistant Professor (Study Leave)</div><div class="timeline-sub">Department of Mathematics, Bangladesh University of Engineering and Technology (BUET)</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="talks">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Talks</div>
+        <div>
+          <h2>Recent conferences & research presentations.</h2>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-row reveal">
+          <div class="timeline-date">Aug 2026</div>
+          <div><div class="timeline-title">When Behavior Matters: Linking Individual Behavior to Ecosystem Dynamics</div><div class="timeline-sub">Ecological Forecasting Initiative Annual Conference · Fields Institute, Toronto</div></div>
+        </div>
+        <div class="timeline-row reveal">
+          <div class="timeline-date">Jun 2026</div>
+          <div><div class="timeline-title">Modeling Foraging Behavior in Ecological Dynamics</div><div class="timeline-sub">CAIMS Annual Meeting · University of Regina</div></div>
+        </div>
+        <div class="timeline-row reveal">
+          <div class="timeline-date">May 2026</div>
+          <div><div class="timeline-title">Stoichiometric Foraging Strategies under Nutrient Constraints and Adaptive Behavior</div><div class="timeline-sub">Alberta Mathematics Dialogue · MacEwan University</div></div>
+        </div>
+        <div class="timeline-row reveal">
+          <div class="timeline-date">Mar 2026</div>
+          <div><div class="timeline-title">When Behavior Matters: Linking Individual to Ecosystem Dynamics</div><div class="timeline-sub">CNAS Research Day · University of Alberta</div></div>
+        </div>
+        <div class="timeline-row reveal">
+          <div class="timeline-date">Feb 2026</div>
+          <div><div class="timeline-title">Foraging Behavior in Ecological Dynamics: from Environmental Drivers to Behavioral Mechanisms</div><div class="timeline-sub">Collaborative Mathematical Biology Seminar · University of Alberta</div></div>
+        </div>
+        <div class="timeline-row reveal">
+          <div class="timeline-date">Dec 2025</div>
+          <div><div class="timeline-title">Modelling Foraging Behavior in Ecological Dynamics</div><div class="timeline-sub">Canadian Mathematical Society Winter Meeting</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="awards">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Recognition</div>
+        <div>
+          <h2>Selected awards & research support.</h2>
+        </div>
+      </div>
+
+      <div class="awards">
+        <article class="award reveal"><h3>Fields Institute Travel Grant · 2026</h3><p>Support to attend the Ecological Forecasting Initiative Annual Conference in Toronto.</p></article>
+        <article class="award reveal"><h3>ICMS & Durham University Travel Grant · 2026</h3><p>Support to attend Mathematical Approaches to Spatial Biology at Durham University, UK.</p></article>
+        <article class="award reveal"><h3>GPS Graduate Student Support · 2026</h3><p>Graduate student support from the University of Alberta.</p></article>
+        <article class="award reveal"><h3>FGSR Travel Awards</h3><p>Faculty of Graduate Studies and Research travel support in Winter 2025 and Summer 2026.</p></article>
+        <article class="award reveal"><h3>University of Alberta Doctoral Recruitment Scholarship · 2021</h3><p>Doctoral recruitment scholarship supporting graduate study in Applied Mathematics.</p></article>
+        <article class="award reveal"><h3>A F Mujibur Rahman Gold Medal · 2019</h3><p>Awarded for M.Phil. result.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2 style="margin-top:8px">Interested in collaboration?</h2>
+          <p class="intro">I welcome conversations about mathematical biology, ecological dynamics, behavioural modelling, environmental applications, infectious disease modelling, and data-driven mathematics.</p>
+        </div>
+
+        <div class="contact-links">
+          <a href="mailto:shohel2@ualberta.ca"><strong>Email</strong><span>shohel2@ualberta.ca ↗</span></a>
+          <a href="https://orcid.org/0000-0002-1639-0950" target="_blank" rel="noopener"><strong>ORCID</strong><span>0000-0002-1639-0950 ↗</span></a>
+          <a href="https://www.researchgate.net/profile/Shohel-Ahmed-2" target="_blank" rel="noopener"><strong>ResearchGate</strong><span>Profile ↗</span></a>
+          <a href="https://github.com/shohelahmed2443" target="_blank" rel="noopener"><strong>GitHub</strong><span>shohelahmed2443 ↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© <span id="year"></span> Shohel Ahmed · Applied Mathematics & Mathematical Biology</footer>
+
+<script>
+/* =========================================================
+   EASY-EDIT CONTENT AREA
+   Update research and publication entries here.
+   ========================================================= */
+
+const research = [
+  {
+    title:"Behavioural Plasticity in Ecological Dynamics",
+    short:"How adaptive behaviour and individual variation reshape consumer–resource dynamics.",
+    details:"I study behavioural plasticity, heterogeneity, trait structure, bifurcations, long transients, tipping behaviour, and stochastic responses using ODE, PDE–ODE, and stochastic models.",
+    tags:["Behaviour","ODE/PDE","Bifurcation","Trait structure"]
+  },
+  {
+    title:"Stoichiometric & Optimal Foraging",
+    short:"How nutrient constraints and resource quality alter adaptive diet choice and persistence.",
+    details:"This work links ecological stoichiometry with optimal and complementary foraging, compensatory feeding, consumer persistence, and nonlinear ecosystem responses.",
+    tags:["Stoichiometry","Optimal foraging","Consumer–resource"]
+  },
+  {
+    title:"Data-driven Mathematical Biology",
+    short:"Connecting mechanistic models to observed biological time series and movement data.",
+    details:"I am interested in empirical dynamical modelling, causality, forecasting, machine learning, hybrid mechanistic–data-driven models, and behavioural indicators derived from ecological observations.",
+    tags:["EDM","Machine learning","Causality","Forecasting"]
+  },
+  {
+    title:"Environmental & Infectious Disease Modelling",
+    short:"Mathematical models for climate, methane, ecotoxicology, and infectious disease dynamics.",
+    details:"Applications include climate-sensitive norovirus dynamics, methane impacts on aquatic systems and zebrafish, oil-sands environmental modelling, and infectious disease intervention models.",
+    tags:["Methane","Zebrafish","Epidemiology","Climate"]
+  }
+];
+
+const publications = [
+  {type:"published",year:"2026",title:"Mathematical modelling of methane-induced transitions in aquatic ecosystems",authors:"Pranali Chowdhury, Tianxu Wang, Keith Tierney, Shohel Ahmed, Hao Wang",venue:"Journal of Mathematical Biology, 92:86"},
+  {type:"published",year:"2025",title:"Behavioral Plasticity in Consumer-Resource Dynamics",authors:"Shohel Ahmed, Xiao Han, Hao Wang",venue:"SIAM Journal on Applied Mathematics, 85, 2190–2214"},
+  {type:"published",year:"2025",title:"Comparative Analysis of Stochastic and Predictable Models in the HIV Epidemic Across Genders",authors:"Nuzhat Nuari Khan Rivu, Md Kamrujjaman, Shohel Ahmed",venue:"International Journal of Biomathematics, 2550107"},
+  {type:"published",year:"2025",title:"A hybrid approach to study and forecast climate-sensitive norovirus infections in the USA",authors:"Juping Ji, Shohel Ahmed, Hao Wang",venue:"Journal of Theoretical Biology, 598:112007"},
+  {type:"published",year:"2024",title:"Stoichiometric Theory in Optimal Foraging Strategy",authors:"Shohel Ahmed, Juping Ji, Hao Wang",venue:"Journal of Mathematical Biology, 89:57"},
+  {type:"published",year:"2023",title:"PrEP intervention in the mitigation of HIV/AIDS epidemics in China via a data-validated age-structured model",authors:"Peng Wu, Shohel Ahmed, Xiunan Wang, Hao Wang",venue:"Bulletin of Mathematical Biology, 85:41"},
+  {type:"published",year:"2022",title:"Impacts of a changing environment on a stoichiometric producer-grazer system: a stochastic modelling approach",authors:"Velizar Kirkow, Hao Wang, Pablo Venegas Garcia, Shohel Ahmed, Christopher M. Heggerud",venue:"Ecological Modelling, 469"},
+  {type:"published",year:"2022",title:"Mathematical comparison and empirical review of the Monod and Droop forms for resource-based population dynamics",authors:"Hao Wang, Pablo Venegas Garcia, Shohel Ahmed, Christopher M. Heggerud",venue:"Ecological Modelling, 466"},
+  {type:"published",year:"2022",title:"Global Stability Analysis and Parameter Estimation for a Diphtheria Model: A Case Study of an Epidemic in Rohingya Refugee Camp in Bangladesh",authors:"Zahurul Islam, Shohel Ahmed, M. M. Rahman, M. F. Karim, M. R. Amin",venue:"Computational and Mathematical Methods in Medicine"},
+  {type:"published",year:"2021",title:"Optimal Treatment Strategies to Control Acute HIV Infection",authors:"Shohel Ahmed, Sumaiya Rahman, Md. Kamrujjaman",venue:"Infectious Disease Modelling, 6, 1202–1219"},
+  {type:"published",year:"2020",title:"Dynamics of a Viral Infectiology under Treatment",authors:"Shohel Ahmed, Md. Kamrujjaman, Sumaiya Rahman",venue:"Journal of Applied Analysis and Computation, 10(5), 1800–1822"},
+  {type:"published",year:"2019",title:"Competitive Reaction-Diffusion Systems: Traveling Waves and Numerical Solutions",authors:"Asif Ahmed, Shohel Ahmed, Md. Kamrujjaman",venue:"Advances in Research, 19(6), 1–12"},
+  {type:"published",year:"2018",title:"A Controlled Treatment Strategy Applied to HIV Immunology Model",authors:"Shohel Ahmed, Abdul Alim, Sumaiya Rahman",venue:"Numerical Algebra, Control and Optimization, 8(3), 309–324"},
+  {type:"published",year:"2017",title:"To Assess the Tuberculosis Situation in Urban and Rural Areas of Bangladesh with Special Emphasis on the Facility of Treatment Scenario",authors:"Sumaiya Rahman, Shohel Ahmed",venue:"Public Health Research, 7(3), 73–77"},
+  {type:"review",year:"2026",title:"Behavioural Heterogeneity as a Driver of Consumer-Resource Dynamics",authors:"Shohel Ahmed, Kyung-Han Choi, Hao Wang",venue:"The American Naturalist · Under review"},
+  {type:"review",year:"",title:"Dynamics of an Intra-host Diffusive Pathogen Infection Model",authors:"Shohel Ahmed",venue:"Computers and Mathematics with Applications"}
+];
+
+const typeLines = [
+  "Behavioural plasticity · ecological tipping · consumer–resource dynamics",
+  "Stoichiometric foraging · dynamical systems · stochastic processes",
+  "Mechanistic models · empirical data · mathematical insight"
+];
+
+let typeIndex=0, charIndex=0, deleting=false;
+const typeText=document.getElementById("typeText");
+function typeLoop(){
+  const line=typeLines[typeIndex];
+  if(!deleting){
+    typeText.textContent=line.slice(0,++charIndex);
+    if(charIndex===line.length){deleting=true;setTimeout(typeLoop,1600);return;}
+  } else {
+    typeText.textContent=line.slice(0,--charIndex);
+    if(charIndex===0){deleting=false;typeIndex=(typeIndex+1)%typeLines.length;}
+  }
+  setTimeout(typeLoop,deleting?20:36);
+}
+typeLoop();
+
+document.getElementById("researchGrid").innerHTML = research.map((r,i)=>`
+  <article class="research-card reveal" tabindex="0" aria-expanded="false">
+    <h3>${r.title}</h3>
+    <p>${r.short}</p>
+    <div class="pills">${r.tags.map(t=>`<span class="pill">${t}</span>`).join("")}</div>
+    <div class="more">${r.details}</div>
+    <div class="expand"><span>Explore this area</span><b>+</b></div>
+  </article>
+`).join("");
+
+document.querySelectorAll(".research-card").forEach(card=>{
+  const toggle=()=>{
+    card.classList.toggle("open");
+    card.setAttribute("aria-expanded",card.classList.contains("open"));
+  };
+  card.addEventListener("click",toggle);
+  card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}});
+});
+
+let currentFilter="all";
+function renderPublications(){
+  const q=document.getElementById("pubSearch").value.toLowerCase().trim();
+  const filtered=publications.filter(p=>{
+    const matchesFilter=currentFilter==="all"||p.type===currentFilter;
+    const hay=`${p.year} ${p.title} ${p.authors} ${p.venue}`.toLowerCase();
+    return matchesFilter && hay.includes(q);
+  });
+  document.getElementById("publicationList").innerHTML = filtered.length ? filtered.map(p=>`
+    <article class="pub">
+      <div class="year">${p.year||"—"}</div>
+      <div>
+        <div class="pub-title">${p.title}<span class="badge">${p.type==="review"?"Under review":"Published / Accepted"}</span></div>
+        <div class="pub-meta">${p.authors}</div>
+        <div class="pub-meta">${p.venue}</div>
+      </div>
+    </article>
+  `).join("") : `<p style="color:var(--muted);padding:16px 0">No matching publications found.</p>`;
+  document.getElementById("pubCount").textContent=`${filtered.length} publication${filtered.length===1?"":"s"} shown`;
+}
+renderPublications();
+
+document.getElementById("pubSearch").addEventListener("input",renderPublications);
+document.querySelectorAll(".filter").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    currentFilter=btn.dataset.filter;
+    renderPublications();
+  });
+});
+
+const savedTheme=localStorage.getItem("shohel-theme");
+if(savedTheme) document.documentElement.dataset.theme=savedTheme;
+document.getElementById("themeToggle").addEventListener("click",()=>{
+  const next=document.documentElement.dataset.theme==="dark"?"light":"dark";
+  document.documentElement.dataset.theme=next;
+  localStorage.setItem("shohel-theme",next);
+});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");observer.unobserve(e.target);}});
+},{threshold:.08});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+const counters=document.querySelectorAll("[data-count]");
+const counterObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    const el=entry.target, target=Number(el.dataset.count);
+    const isYear=target>100;
+    const duration=900, start=performance.now();
+    function tick(now){
+      const p=Math.min(1,(now-start)/duration);
+      const eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round((isYear?2000:0)+(target-(isYear?2000:0))*eased);
+      if(p<1)requestAnimationFrame(tick);else el.textContent=target;
+    }
+    requestAnimationFrame(tick);counterObserver.unobserve(el);
+  });
+},{threshold:.7});
+counters.forEach(el=>counterObserver.observe(el));
+
+window.addEventListener("scroll",()=>{
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById("progress").style.width=(max>0?(window.scrollY/max)*100:0)+"%";
+},{passive:true});
+
+
+/* Sticky section tabs:
+   - click a tab to smooth-scroll to its section
+   - automatically highlight the section currently in view */
+const sectionTabs=[...document.querySelectorAll(".navlinks a[data-section]")];
+const sectionEls=sectionTabs
+  .map(tab=>document.getElementById(tab.dataset.section))
+  .filter(Boolean);
+
+sectionTabs.forEach(tab=>{
+  tab.addEventListener("click",e=>{
+    const target=document.getElementById(tab.dataset.section);
+    if(!target)return;
+    e.preventDefault();
+    target.scrollIntoView({behavior:"smooth",block:"start"});
+    history.replaceState(null,"","#"+tab.dataset.section);
+  });
+});
+
+const sectionObserver=new IntersectionObserver(entries=>{
+  const visible=entries
+    .filter(entry=>entry.isIntersecting)
+    .sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+
+  if(!visible)return;
+
+  sectionTabs.forEach(tab=>{
+    const active=tab.dataset.section===visible.target.id;
+    tab.classList.toggle("active",active);
+    if(active){
+      tab.setAttribute("aria-current","page");
+      tab.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
+    }else{
+      tab.removeAttribute("aria-current");
+    }
+  });
+},{
+  rootMargin:"-28% 0px -58% 0px",
+  threshold:[0,.05,.15,.3,.5]
+});
+
+sectionEls.forEach(section=>sectionObserver.observe(section));
+
+if(location.hash){
+  const initial=document.querySelector(`.navlinks a[data-section="${location.hash.slice(1)}"]`);
+  if(initial)initial.classList.add("active");
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
