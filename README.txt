@@ -1,1 +1,0 @@
-Academic Site (Shohel Ahmed)
