@@ -65,8 +65,7 @@ button,input{font:inherit}
   backdrop-filter:blur(16px);
 }
 .navin{height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand{font-weight:900;letter-spacing:-.04em;font-size:1.08rem}
-.brand span{color:var(--accent)}
+.brand-spacer{width:12px;flex:0 0 12px}
 .navlinks{
   display:flex;gap:6px;align-items:center;
   padding:5px;border:1px solid var(--line);border-radius:999px;
@@ -106,8 +105,12 @@ html[data-theme="dark"] .navlinks a.active{color:#071412}
 }
 .kicker i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 15%,transparent)}
 h1{
-  margin:18px 0 16px;font-size:clamp(3.6rem,8.6vw,7rem);
-  line-height:.91;letter-spacing:-.072em;max-width:860px
+  margin:18px 0 16px;
+  font-size:clamp(3rem,7vw,6.2rem);
+  line-height:.94;
+  letter-spacing:-.065em;
+  max-width:none;
+  white-space:nowrap;
 }
 .gradient{
   background:linear-gradient(100deg,var(--text) 0%,var(--accent) 50%,var(--accent2) 100%);
@@ -153,11 +156,7 @@ html[data-theme="dark"] .btn.primary{color:#071412}
   position:absolute;inset:0;display:grid;place-items:center;font-size:7rem;font-weight:900;
   letter-spacing:-.08em;color:var(--accent);z-index:1
 }
-.visual::after{
-  content:"";position:absolute;inset:auto 18px 18px 18px;height:56px;border-radius:15px;
-  background:rgba(255,255,255,.16);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.24);z-index:3
-}
-.visual-label{position:absolute;left:34px;bottom:35px;z-index:4;color:white;font-weight:800;font-size:.9rem;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+
 .orbit{position:absolute;border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:50%;pointer-events:none}
 .o1{width:150px;height:150px;top:-42px;right:-38px}
 .o2{width:230px;height:230px;bottom:-90px;left:-90px}
@@ -262,7 +261,9 @@ footer{padding:30px 0 48px;text-align:center;color:var(--muted);font-size:.9rem}
   .research-grid,.awards,.contact{grid-template-columns:1fr}.pub-controls{grid-template-columns:1fr}
 }
 @media(max-width:560px){
-  .wrap{width:min(var(--max),calc(100% - 22px))}.hero{padding-top:52px}h1{font-size:3.45rem}
+  .wrap{width:min(var(--max),calc(100% - 22px))}
+  .hero{padding-top:52px}
+  h1{font-size:clamp(2.5rem,12vw,3.2rem);white-space:nowrap}
   .timeline-row{grid-template-columns:1fr;gap:4px}.pub{grid-template-columns:48px 1fr}
   .stats{grid-template-columns:1fr 1fr}.contact{padding:25px}
 }
@@ -274,7 +275,7 @@ footer{padding:30px 0 48px;text-align:center;color:var(--muted);font-size:.9rem}
 
 <nav class="nav">
   <div class="wrap navin">
-    <a href="#top" class="brand">Shohel<span>.</span></a>
+    <div class="brand-spacer" aria-hidden="true"></div>
     <div class="navlinks">
       <a href="#about" data-section="about">About</a>
       <a href="#research" data-section="research">Research</a>
@@ -305,7 +306,7 @@ footer{padding:30px 0 48px;text-align:center;color:var(--muted);font-size:.9rem}
     <div class="visual reveal">
       <div class="fallback">SA</div>
       <img src="headshot.jpg" alt="Portrait of Shohel Ahmed" onerror="this.style.display='none'">
-    </div>
+</div>
   </div>
 
   <section id="about">
