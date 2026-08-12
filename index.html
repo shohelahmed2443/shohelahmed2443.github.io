@@ -65,7 +65,19 @@ button,input{font:inherit}
   backdrop-filter:blur(16px);
 }
 .navin{height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.brand-spacer{width:12px;flex:0 0 12px}
+.home-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:8px 13px;border-radius:999px;
+  border:1px solid var(--line);background:var(--panel);
+  color:var(--text);font-weight:800;font-size:.92rem;
+  transition:.2s transform,.2s border-color,.2s background;
+}
+.home-btn:hover{
+  transform:translateY(-1px);
+  border-color:var(--accent);
+  background:var(--soft);
+  color:var(--accent);
+}
 .navlinks{
   display:flex;gap:6px;align-items:center;
   padding:5px;border:1px solid var(--line);border-radius:999px;
@@ -105,13 +117,14 @@ html[data-theme="dark"] .navlinks a.active{color:#071412}
 }
 .kicker i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 15%,transparent)}
 h1{
-  margin:18px 0 16px;
+  margin:18px 0 12px;
   font-size:clamp(3rem,7vw,6.2rem);
   line-height:.94;
   letter-spacing:-.065em;
   max-width:none;
   white-space:nowrap;
 }
+h1 + .kicker{margin-bottom:14px}
 .gradient{
   background:linear-gradient(100deg,var(--text) 0%,var(--accent) 50%,var(--accent2) 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent
@@ -275,7 +288,7 @@ footer{padding:30px 0 48px;text-align:center;color:var(--muted);font-size:.9rem}
 
 <nav class="nav">
   <div class="wrap navin">
-    <div class="brand-spacer" aria-hidden="true"></div>
+    <a href="#top" class="home-btn" aria-label="Go to top">Home</a>
     <div class="navlinks">
       <a href="#about" data-section="about">About</a>
       <a href="#research" data-section="research">Research</a>
@@ -292,8 +305,9 @@ footer{padding:30px 0 48px;text-align:center;color:var(--muted);font-size:.9rem}
 <main id="top">
   <div class="wrap hero">
     <div>
-      <div class="kicker"><i></i>PhD Candidate · Applied Mathematics · University of Alberta</div>
+      
       <h1><span class="gradient">Shohel Ahmed</span></h1>
+      <div class="kicker"><i></i>PhD Candidate · Applied Mathematics · University of Alberta</div>
       <p class="lead">I use mathematics to understand how behaviour, environmental change, and biological interactions shape ecological and population dynamics.</p>
       <div class="dynamic-line"><span id="typeText"></span><span class="caret"></span></div>
       <div class="actions">
